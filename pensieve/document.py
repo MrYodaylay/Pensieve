@@ -2,6 +2,8 @@ import pathlib
 
 
 class Document:
+    """The Document class represents an input file that is on disk, such as a PDF or DOCX file. The reading and
+    processing of the files is delegated to subclasses, in the document_types submodule"""
 
     _filetype_registry = dict()
 

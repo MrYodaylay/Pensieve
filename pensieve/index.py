@@ -1,6 +1,6 @@
 import pathlib
 
-from pensieve.documents.document import Document
+from pensieve.document import Document
 
 
 class DocumentIndex:

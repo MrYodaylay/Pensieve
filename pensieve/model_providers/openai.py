@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-from pensieve.completions import ModelProvider, Model
+from pensieve import ModelProvider, Model
 
 
 class OpenAIProvider(ModelProvider, provider_keys=["openai"]):

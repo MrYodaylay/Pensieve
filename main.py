@@ -3,8 +3,8 @@ import pathlib
 
 import strictyaml
 
-from pensieve.completions import ModelProvider
-from pensieve.documents import Document, DocumentIndex
+from pensieve import ModelProvider
+from pensieve import Document, DocumentIndex
 
 
 def main():
@@ -33,7 +33,9 @@ def main():
     model = model_provider.get_model(config["completions"]["model"])
     model.system_prompt(config["completions"]["system_prompt"])
 
-    model.get_completions(document_index)
+
+    model.get_completion(document_index.get_document(0))
+
 
 if __name__ == "__main__":
     main()

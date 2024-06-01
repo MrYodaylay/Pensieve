@@ -1,6 +1,6 @@
 from pypdf import PdfReader
 
-from pensieve.documents.document import Document
+from pensieve.document import Document
 
 
 class PdfDocument(Document, file_types=[".pdf"]):
