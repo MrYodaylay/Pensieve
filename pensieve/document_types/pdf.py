@@ -5,7 +5,7 @@ from pensieve.document import Document
 
 class PdfDocument(Document, file_types=[".pdf"]):
 
-    def _gen_plain_text(self):
+    def _gen_text(self):
 
         reader = PdfReader(self.path)
 

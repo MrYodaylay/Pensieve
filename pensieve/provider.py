@@ -18,9 +18,6 @@ class ModelProvider:
 
         return super().__new__(subclass)
 
-    def auth(self, auth_information: dict):
-        raise NotImplementedError()
-
     def get_model(self, model_key: str):
         raise NotImplementedError()
 

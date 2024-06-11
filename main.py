@@ -3,12 +3,11 @@ import pathlib
 
 import strictyaml
 
-from pensieve import ModelProvider
-from pensieve import Document, DocumentIndex
+from pensieve import ModelProvider, Processor
+from pensieve import Document, Index
 
 
 def main():
-
     # Parse command line arguments
     cli = argparse.ArgumentParser()
     cli.add_argument("input", type=pathlib.Path)
@@ -23,20 +22,22 @@ def main():
         config = strictyaml.load(config_file.read(), None).data
 
     # Iterate input directory / files
-    document_index = DocumentIndex(args.input)
+    submission_index = Index(args.input)
 
     # Authenticate with provider
-    model_provider = ModelProvider(config["completions"]["provider"])
-    model_provider.auth(config["completions"]["auth"])
+    model_provider = ModelProvider(config["completions"]["provider"], auth=config["completions"]["auth"])
 
     # Get model class
     model = model_provider.get_model(config["completions"]["model"])
-    model.system_prompt(config["completions"]["system_prompt"])
 
+    # Generate completions
+    processor = Processor(
+        model, prompt=config["completions"]["system_prompt"]
+    )
+    processor.run(submission_index)
 
-    model.get_completion(document_index.get_document(0))
+    submission_index.write_csv()
 
 
 if __name__ == "__main__":
     main()
-

@@ -1,14 +1,14 @@
-from pensieve import DocumentIndex, Document
+from pensieve import Index, Document
 
 
 class Model:
 
     def __init__(self, *args, **kwargs):
-        self.system = None
+        self.prompt = None
 
-    def system_prompt(self, prompt: str):
+    def set_prompt(self, prompt: str):
         raise NotImplementedError()
 
-    def get_completion(self, document: Document | DocumentIndex):
+    def complete(self, system: str, user: str):
         raise NotImplementedError()
 

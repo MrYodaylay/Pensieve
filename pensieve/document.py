@@ -26,16 +26,20 @@ class Document:
 
     def __init__(self, path: pathlib.Path):
         self.path = path
-        self._plain_text = None
+        self._text = None
 
     @property
-    def plain_text(self):
-        if self._plain_text is None:
-            self._plain_text = self._gen_plain_text()
+    def text(self):
+        if self._text is None:
+            self._text = self._gen_text()
 
-        return self._plain_text
+        return self._text
 
-    def _gen_plain_text(self):
+    def _gen_text(self):
         raise NotImplementedError()
+
+    @property
+    def filetype_registry(self):
+        return self._filetype_registry
 
 
