@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ unit.unit_name }} - VivaMQ</title>
+</head>
+<body>
+<h2>{{ unit.unit_name }}</h2>
+<h3>Unit Staff</h3>
+<ul>
+    {% for role in staff %}
+        <li>{{ role.user.user_id }} - {{ role.role }}</li>
+    {% endfor %}
+</ul>
+<h3>Assignments</h3>
+<ul>
+    {% for assignment in unit.assignments %}
+        <li><a href="/assignment/{{ assignment.assignment_id }}">{{ assignment.name }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

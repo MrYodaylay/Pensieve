@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - VivaMQ</title>
+</head>
+<body>
+<h2>VivaMQ Dashboard</h2>
+<p>Welcome, {{user.user_id}}</p>
+<h3>Your Classes</h3>
+<ul>
+    {% for unit in user.unit %}
+        <li><a href="/unit/{{ unit.unit.unit_id }}">{{ unit.unit.unit_name }}</a> - {{ unit.role }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
