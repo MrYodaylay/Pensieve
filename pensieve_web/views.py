@@ -5,7 +5,7 @@ from flask import render_template, request, redirect, session, url_for
 from sqlalchemy import Select
 
 from pensieve_web import app, db, ph
-from pensieve_web.models import User, Unit
+from pensieve_web.models import User, Unit, Assignment
 
 
 def require_login(view):
@@ -54,4 +54,14 @@ def unit_view_staff(unit_id):
     unit = db.session.get_one(Unit, unit_id)
     unit_staff = [x for x in unit.user if x.role in ['owner', 'staff']]
     return render_template("unit.html", user=user, unit=unit, staff=unit_staff)
+
+
+@app.route('/assignment/<assignment_id>')
+@require_login
+def assignment_view_staff(assignment_id):
+    # TODO verify user permissions to view unit
+    user = db.session.get_one(User, session["user_id"])
+    assignment = db.session.get_one(Assignment, assignment_id)
+    return render_template("assignment.html", user=user, assignment=assignment)
+
 

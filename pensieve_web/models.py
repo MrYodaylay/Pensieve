@@ -30,10 +30,10 @@ class Unit(db.Model):
     __tablename__ = 'units'
 
     unit_id: Mapped[int] = Column(Integer, primary_key=True, autoincrement=True)
-    unit_name: Mapped[str] = Column(String)
+    name: Mapped[str] = Column(String)
 
     user: Mapped[List["UnitRoles"]] = Relationship()
-    assignments: Mapped[List["Assignment"]] = Relationship()
+    assignments: Mapped[List["Assignment"]] = Relationship(back_populates="unit")
 
 
 class Assignment(db.Model):
@@ -43,5 +43,5 @@ class Assignment(db.Model):
     unit_id: Mapped[int] = Column(ForeignKey("units.unit_id"))
     name: Mapped[str] = Column(String)
 
-    unit: Mapped["Unit"] = Relationship()
+    unit: Mapped["Unit"] = Relationship(back_populates="assignments")
 
